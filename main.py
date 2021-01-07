@@ -4,6 +4,8 @@ import argparse
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
+from modes.train import Train
+
 
 class Main(Mode):
     """
@@ -21,7 +23,7 @@ class Main(Mode):
         mode = Mode.get_value(args.mode, self["main"]["mode"])
 
         if mode == "train":
-            print(mode)
+            Train()
         elif mode == "test":
             print(mode)
         else:

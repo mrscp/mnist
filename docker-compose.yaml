@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+  mnist:
+    container_name: train_mnist
+    runtime: nvidia
+    tty: true
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - './files:/mnist/files'
+      - './:/mnist'
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+#  serve_model:
+#    image: tensorflow/serving:latest
+#    container_name: mnist_serving_2
+#    command: --model_config_file=/models/models.conf
+#    restart: unless-stopped
+#    ports:
+#      - 8502:8501
+#    volumes:
+#      - "./data/saved_models/mnist:/models/mnist"
+#      - "./models.conf:/models/models.conf"

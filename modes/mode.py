@@ -1,6 +1,7 @@
 from lib.config import Config
 from time import time
 from datetime import timedelta
+from os.path import join
 
 
 class Mode(Config):
@@ -34,6 +35,9 @@ class Mode(Config):
         :return: selected value
         """
         return param if param is not None else default_value
+
+    def get_data_location(self, location):
+        return join(self["main"]["data_root"], location)
 
     def status(self):
         """

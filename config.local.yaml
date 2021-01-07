@@ -3,6 +3,7 @@ main:
     plt_show: True
 
     data_root: /mnist/files
+    model_location: models
 
 train:
     dataset: dataset/train.csv

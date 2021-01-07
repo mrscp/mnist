@@ -1,4 +1,5 @@
 import pandas as pd
+from tensorflow.keras.utils import to_categorical
 
 
 class Dataset:
@@ -13,4 +14,4 @@ class Dataset:
 
             x = batch[self._x_cols].values.reshape((-1, 28, 28, 1))  # .reshape((-1, 784, 1))
             y = batch[self._y_cols].values
-            yield x, y
+            yield x, to_categorical(y, num_classes=10)

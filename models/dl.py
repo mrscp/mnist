@@ -1,25 +1,21 @@
-from tensorflow import keras
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Activation, Dropout, Flatten, Conv2D, MaxPooling2D
+from tensorflow.keras.layers import Dense, Activation, Dropout, Flatten, Conv2D, MaxPooling2D, UpSampling2D
 
 
-def fully_connected(input_shape, output_dim):
+def simple_cnn(input_shape, output_dim):
+
     model = Sequential()
-    # 1st Convolution Layer
-    model.add(Conv2D(filters=96, input_shape=input_shape, kernel_size=(11, 11), strides=(4, 4), padding="valid"))
-    model.add(Activation("relu"))
-    # Max Pooling
-    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2), padding="valid"))
-    # # Passing it to a Fully Connected layer
+    model.add(Conv2D(32, input_shape=input_shape, kernel_size=(3, 3), activation="relu"))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Conv2D(64, kernel_size=(3, 3), activation="relu"))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Flatten())
-    # 1st Fully Connected Layer
     model.add(Dense(1024))
     model.add(Activation("relu"))
-    # Add Dropout to prevent over-fitting
     model.add(Dropout(0.4))
 
-    model.add(Dense(output_dim))
-    model.add(Activation("softmax"))
+    model.add(Dense(output_dim, activation="softmax"))
 
     return model
+
 

@@ -36,8 +36,8 @@ class Mode(Config):
         """
         return param if param is not None else default_value
 
-    def get_data_location(self, location):
-        return join(self["main"]["data_root"], location)
+    def get_data_location(self, *location):
+        return join(self["main"]["data_root"], *location)
 
     def status(self):
         """

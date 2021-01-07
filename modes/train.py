@@ -1,5 +1,4 @@
 from modes.mode import Mode
-from tensorflow import config
 from processor.dataset import Dataset
 
 from models.dl import simple_cnn
@@ -7,19 +6,6 @@ from tensorflow.keras.losses import categorical_crossentropy
 from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
 from tensorflow.keras.optimizers import Adam
 from tensorflow import saved_model
-
-# Setting up GPU memories to be used for the models
-if config.list_physical_devices('GPU'):
-    print("using GPU")
-    physical_devices = config.list_physical_devices('GPU')
-    config.experimental.set_memory_growth(physical_devices[0], enable=True)
-    config.experimental.set_virtual_device_configuration(
-        physical_devices[0],
-        [config.experimental.VirtualDeviceConfiguration(memory_limit=4000)]
-    )
-else:
-    print("using CPU")
-    config.set_visible_devices([], 'GPU')
 
 
 class Train(Mode):

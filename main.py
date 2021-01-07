@@ -1,10 +1,26 @@
 from modes.mode import Mode
 import argparse
+from tensorflow import config
+
 
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
+# Setting up GPU memories to be used for the models
+if config.list_physical_devices('GPU'):
+    print("using GPU")
+    physical_devices = config.list_physical_devices('GPU')
+    config.experimental.set_memory_growth(physical_devices[0], enable=True)
+    config.experimental.set_virtual_device_configuration(
+        physical_devices[0],
+        [config.experimental.VirtualDeviceConfiguration(memory_limit=4000)]
+    )
+else:
+    print("using CPU")
+    config.set_visible_devices([], 'GPU')
+
 from modes.train import Train
+from modes.inference import Inference
 
 
 class Main(Mode):
@@ -25,7 +41,7 @@ class Main(Mode):
         if mode == "train":
             Train()
         elif mode == "test":
-            print(mode)
+            Inference()
         else:
             print("Wrong mode! Available modes are: ", self["mode"])
 

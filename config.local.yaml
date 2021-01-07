@@ -1,5 +1,5 @@
 main:
-    mode: train
+    mode: test
     plt_show: True
 
     data_root: /mnist/files

@@ -1,0 +1,3 @@
+main:
+    mode: train
+    plt_show: True

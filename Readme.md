@@ -1,3 +1,16 @@
+# Dataset
+Download and place the dataset in files folder of project root.
+
+Folder structure -
+```shell
+- mnist
+  - files
+      - dataset
+        - test.csv
+        - train.csv
+```
+Location: ```https://www.kaggle.com/c/digit-recognizer/data```
+
 # Project Setup
 On local machine
 ```shell

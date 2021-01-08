@@ -21,16 +21,14 @@ class Train(Mode):
         print(x.shape, y.shape)
 
         model = simple_cnn((28, 28, 1), 10)
-        optimizer = Adam(0.0001)
+        optimizer = Adam(0.001, beta_1=0.9)
         reduce_lro_n_plat = ReduceLROnPlateau(
             monitor='loss',
-            factor=0.8,
+            factor=0.90,
             patience=20,
             verbose=1,
             mode='auto',
-            min_delta=0.0001,
-            cooldown=10,
-            min_lr=1e-10
+            min_delta=0.0001
         )
         early = EarlyStopping(monitor="loss", mode="min", patience=20)
         callbacks_list = [early, reduce_lro_n_plat]

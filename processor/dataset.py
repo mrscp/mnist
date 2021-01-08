@@ -12,6 +12,6 @@ class Dataset:
         while True:
             batch = self._dataset.sample(batch_size)
 
-            x = batch[self._x_cols].values.reshape((-1, 28, 28, 1))  # .reshape((-1, 784, 1))
+            x = batch[self._x_cols].values.reshape((-1, 28, 28, 1))/255  # .reshape((-1, 784, 1))
             y = batch[self._y_cols].values
             yield x, to_categorical(y, num_classes=10)

@@ -9,5 +9,5 @@ train:
     dataset: dataset/train.csv
 
     epochs: 1000
-    steps_per_epoch: 100
-    batch_size: 8
+    steps_per_epoch: 500
+    batch_size: 32

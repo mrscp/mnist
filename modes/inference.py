@@ -24,7 +24,7 @@ class Inference(Mode):
         print("Accuracy: ", (y == y_hat).mean())
         print("Saving submission file...")
         dataset = pd.read_csv(self.get_data_location("dataset/test.csv"))
-        dataset = dataset.values.reshape((-1, 28, 28, 1))
+        dataset = dataset.values.reshape((-1, 28, 28, 1))/255
         y_hat = model.predict(dataset)
         y_hat = np.argmax(y_hat, axis=1)
         image_ids = np.arange(1, len(y_hat)+1)

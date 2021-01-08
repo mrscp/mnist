@@ -43,6 +43,6 @@ class Train(Mode):
             callbacks=callbacks_list
         )
         saved_model.save(model, self.get_data_location(self["main"]["model_location"], "1"))
-        print("Playing model saved...\n")
+        print("Model saved...\n")
 
 

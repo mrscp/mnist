@@ -2,7 +2,7 @@ main:
     mode: test
     plt_show: True
 
-    data_root: /mnist/files
+    data_root: /home/sadid/PycharmProjects/mnist/files
     model_location: models
 
 train:
